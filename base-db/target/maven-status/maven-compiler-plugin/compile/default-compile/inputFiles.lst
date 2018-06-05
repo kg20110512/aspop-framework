@@ -1,0 +1,14 @@
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\service\impl\BaseServiceImpl.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\annotation\QueryColumnMapping.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\impl\BaseDaoImpl.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\QueryCriteriaVo.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\redis\dao\IRedisDao.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\QueryCriteriaUpdateVo.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\redis\dao\impl\RedisDaoImpl.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\OrderByEnum.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\QueryCriteriaDeleteVo.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\QueryParameter.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\IBaseDao.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\PagedQueryVO.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\dao\support\QueryEnum.java
+E:\oms\latest_src_0425\src\framework\framework\base-db\src\main\java\com\vyd\base\jpa\service\IBaseService.java

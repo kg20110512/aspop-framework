@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="logback.xsd"> -->
+<!DOCTYPE xml>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="ROLLINGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.rootPath}db/basic-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="SQLFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.rootPath}db/sql-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="com.vyd.base" level="${logback.debug.level}" additivity="${logback.additivity}">
+		<appender-ref ref="ROLLINGFILE"/>
+	</logger>
+	
+	<!-- sql日志信息 -->
+	<logger name="jdbc.sqlonly" level="${logback.error.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	<logger name="jdbc.sqltiming" level="${logback.info.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	<logger name="jdbc.audit" level="${logback.error.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	<logger name="jdbc.resultset" level="${logback.error.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	<logger name="jdbc.resultsettable" level="${logback.info.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	<logger name="jdbc.connection" level="${logback.error.level}" additivity="${logback.additivity}">
+		<appender-ref ref="SQLFILE"/>
+	</logger>
+	
+	<root level="${logback.debug.level}">
+		<appender-ref ref="STDOUT"/>
+	</root>
+</configuration>

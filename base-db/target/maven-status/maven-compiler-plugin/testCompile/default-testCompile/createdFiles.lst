@@ -1,0 +1,6 @@
+com\vyd\base\encode\TCU.class
+com\vyd\base\redis\test\JedisTest.class
+com\vyd\base\encode\TCU2ID.class
+com\vyd\base\redis\entity\DemoEntity.class
+com\vyd\base\jap\entity\DemoPerson.class
+com\vyd\base\jap\test\BaseServiceTest.class

@@ -1,0 +1,15 @@
+com\vyd\base\jpa\dao\support\QueryCriteriaVo.class
+com\vyd\base\jpa\dao\support\QueryParameter.class
+com\vyd\base\jpa\dao\support\QueryEnum.class
+com\vyd\base\jpa\dao\support\PagedQueryVO.class
+com\vyd\base\jpa\dao\annotation\QueryColumnMapping.class
+com\vyd\base\jpa\dao\support\OrderByEnum.class
+com\vyd\base\jpa\dao\impl\BaseDaoImpl$1.class
+com\vyd\base\jpa\dao\support\QueryCriteriaDeleteVo.class
+com\vyd\base\jpa\service\impl\BaseServiceImpl.class
+com\vyd\base\jpa\dao\impl\BaseDaoImpl.class
+com\vyd\base\jpa\dao\support\QueryCriteriaUpdateVo.class
+com\vyd\base\jpa\dao\IBaseDao.class
+com\vyd\base\jpa\service\IBaseService.class
+com\vyd\base\redis\dao\impl\RedisDaoImpl.class
+com\vyd\base\redis\dao\IRedisDao.class

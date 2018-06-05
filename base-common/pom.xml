@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+      <artifactId>framework</artifactId>
+      <groupId>com.vyd</groupId>
+      <version>0.0.1</version>
+    </parent>
+  
+    <artifactId>base-common</artifactId>
+
+	<properties>
+	    <!-- 编码格式：UTF-8 -->
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <!-- Patchca验证码版本号 -->
+	    <patchca.version>0.0.1</patchca.version>
+	</properties>
+  
+	<build>
+		<finalName>base-common</finalName>
+		
+		<filters>
+	 		<filter>src/main/filters/filter-${env}.properties</filter>
+			<!--<filter>src/main/filters/filter-develop-master.properties</filter>-->
+
+	 	</filters>
+
+		<!-- 子工程直接生效 -->
+		<plugins>
+			<!-- 编译 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${encoding.charset}</encoding>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+ 	
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			
+			<resource>
+				<directory>src/main/filters</directory>
+				<excludes>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+	
+	<dependencies>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>commons-collections</groupId>
+		    <artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.github.bingoohuang</groupId>
+		    <artifactId>patchca</artifactId>
+		    <version>${patchca.version}</version>
+		</dependency>
+	</dependencies>
+
+
+	<!--<distributionManagement>
+		<repository>
+			<id>nexus-release</id>
+			<url>http://114.115.149.251:8081/repository/maven-release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshot</id>
+			<url>http://114.115.149.251:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>-->
+
+</project>

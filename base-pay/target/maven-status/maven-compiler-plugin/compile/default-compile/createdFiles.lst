@@ -1,0 +1,5 @@
+com\vyd\base\pay\weixin\WXPayData.class
+com\vyd\base\pay\weixin\WXPayManage.class
+com\vyd\base\pay\ali\AliPay.class
+com\vyd\base\pay\weixin\WXPayConfigImpl.class
+com\vyd\base\pay\weixin\WXPayData$TradeType.class

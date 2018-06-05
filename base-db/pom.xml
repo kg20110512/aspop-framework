@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.vyd</groupId>
+    <artifactId>framework</artifactId>
+    <version>0.0.1</version>
+  </parent>
+  
+  <artifactId>base-db</artifactId>
+
+  <properties>
+    <!-- 编码格式：UTF-8 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- mysql版本号 -->
+    <myql.version>6.0.6</myql.version>
+    <!-- hibernate版本号  -->
+    <hibernate.version>5.2.10.Final</hibernate.version>
+    <!-- 数据库连接池版本号 -->
+    <druid.version>1.0.29</druid.version>
+    <!-- log4jdbc版本号 -->
+    <log4jdbc.version>1.2</log4jdbc.version>
+    <!-- aspectj版本号 -->
+    <aspectj.version>1.8.10</aspectj.version>
+    <!-- hibernate jpa版本号 -->
+    <hibernate-jpa.version>1.0.0.Final</hibernate-jpa.version>
+    <!-- spring-data-jpa版本号 -->
+    <spring-jpa.version>1.11.3.RELEASE</spring-jpa.version>
+    <!-- spring-data-redis版本号 -->
+    <spring-redis.version>1.8.3.RELEASE</spring-redis.version>
+    <!-- jedis pool版本号 -->
+    <jedis-pool.version>2.9.0</jedis-pool.version>
+  </properties>
+  
+  <build>
+ 	<finalName>base-db</finalName>
+ 	
+ 	<filters>
+ 		<filter>src/main/filters/filter-${env}.properties</filter>
+ 	</filters>	
+	
+	<resources>
+		<resource>
+			<directory>src/main/java</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+		</resource>
+		
+		<resource>
+			<directory>src/main/resources</directory>
+			<filtering>true</filtering>
+		</resource>
+		
+		<resource>
+			<directory>src/main/filters</directory>
+			<excludes>
+				<exclude>**/*.properties</exclude>
+			</excludes>
+			<filtering>false</filtering>
+		</resource>
+	</resources>
+  </build>
+	
+  <dependencies>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>${myql.version}</version>
+		<scope>runtime</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-ehcache</artifactId>
+		<version>${hibernate.version}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>${hibernate.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-redis</artifactId>
+	    <version>${spring-redis.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.data</groupId>
+	    <artifactId>spring-data-jpa</artifactId>
+	    <version>${spring-jpa.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>redis.clients</groupId>
+	    <artifactId>jedis</artifactId>
+	    <version>${jedis-pool.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>druid</artifactId>
+	    <version>${druid.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.googlecode.log4jdbc</groupId>
+	    <artifactId>log4jdbc</artifactId>
+	    <version>${log4jdbc.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>${aspectj.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>commons-beanutils</groupId>
+	    <artifactId>commons-beanutils</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-core</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <scope>test</scope>
+	</dependency>
+  </dependencies>
+</project>

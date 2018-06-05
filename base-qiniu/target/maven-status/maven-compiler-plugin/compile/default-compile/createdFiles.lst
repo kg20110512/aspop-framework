@@ -1,0 +1,9 @@
+com\hczt\base\qiniu\FileMove.class
+com\hczt\base\qiniu\QiniuController.class
+com\hczt\base\qiniu\DirectoryFresh.class
+com\hczt\base\qiniu\QiniuManage.class
+com\hczt\base\qiniu\TCU.class
+com\hczt\base\qiniu\ChangeFileName.class
+com\hczt\base\qiniu\TCU2ID.class
+com\hczt\base\qiniu\UpdateImg.class
+com\hczt\base\qiniu\ListFiles.class

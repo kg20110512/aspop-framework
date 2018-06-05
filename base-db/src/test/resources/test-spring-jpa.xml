@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- 扫描bean包 -->
+	<context:component-scan base-package="com.vyd.base.jpa" />
+	
+	<!-- 加载数据库配置文件 -->
+	<context:property-placeholder location="classpath:test-jdbc.properties" ignore-unresolvable="true"/>
+
+	<!-- 配置阿里Druid数据源 -->
+	<bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<!-- 数据库连接基本信息 -->
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 初始化数据库连接数量 -->
+		<property name="initialSize" value="${druid.initialSize}" />
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${druid.maxActive}" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${druid.minIdle}" />
+		<!-- 连接等待超时时间 -->
+		<property name="maxWait" value="${druid.maxWait}" />
+		<!-- 超长时间聘任制是否回收 -->
+		<property name="removeAbandoned" value="${druid.removeAbandoned}" />
+		<!-- 检测需要关闭的空闲连接时间间隔，单位毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+		<!-- 连接最小生存时间，单位毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+		<!-- 检测连接是否有效的sql，要求是一个查询语句 -->	
+		<property name="validationQuery" value="${druid.validationQuery}" />
+		<!-- 申请连接时检测 -->
+		<property name="testWhileIdle" value="${druid.testWhileIdle}" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，配置为true时会降低性能 -->
+		<property name="testOnBorrow" value="${druid.testOnBorrow}" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，配置为true时会降低性能 -->
+		<property name="testOnReturn" value="${druid.testOnReturn}" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+		<!-- 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
+			监控统计用的filter:stat
+			日志用的filter:log4j
+			防御SQL注入的filter:wall
+		-->	
+		<property name="filters" value="${druid.filters}" />
+	</bean>
+	
+	<!-- 配置JPA EntityManagerFactory 
+	     This produces a container-managed EntityManagerFactory; rather than application-managed EntityManagerFactory 
+	     as in case of LocalEntityManagerFactoryBean
+	-->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="druidDataSource" />
+		<property name="packagesToScan" value="com.vyd" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties" ref="hibernateProperties" />
+	</bean>
+	
+	<!-- 配置Hibernate属性文件 -->
+	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+				<prop key="hibernate.connection.driver_class">${hibernate.connection.driver_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="hibernate.cache.provider_configuration_file_resource_path">${hibernate.cache.provider_configuration_file_resource_path}</prop>
+				<prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 配置spring声明式事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/> 	
+</beans>

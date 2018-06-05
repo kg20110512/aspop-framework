@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.vyd</groupId>
+		<artifactId>framework</artifactId>
+		<version>0.0.1</version>
+	</parent>
+
+	<artifactId>base-qiniu</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>[7.2.0, 7.2.99]</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>23.3-jre</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>

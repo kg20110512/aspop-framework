@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.vyd</groupId>
+	<artifactId>framework</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>base-common</module>
+		<module>base-db</module>
+		<module>base-pay</module>
+		<module>base-qiniu</module>
+	</modules>
+
+	<!-- 全局变量设置 -->
+	<properties>
+		<!-- 基础框架版本号 -->
+		<!--<framework.version>0.0.1</framework.version>-->
+		<jdk.version>1.8</jdk.version>
+		<encoding.charset>UTF-8</encoding.charset>
+		<!-- spring版本号 -->
+		<spring.version>4.3.8.RELEASE</spring.version>
+		<!-- logback日志相关版本号 -->
+		<logback.version>1.2.3</logback.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<commons-collections.version>3.2.2</commons-collections.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
+		<servlet.version>3.1.0</servlet.version>
+		<jackson.version>2.8.8</jackson.version>
+		<junit.version>4.12</junit.version>
+		<jsonlib.version>2.2.3</jsonlib.version>
+		<httpclient.version>4.5.3</httpclient.version>
+	</properties>
+	
+	<build>
+		<!-- 子工程直接生效 -->
+		<plugins>
+			<!-- 编译 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${encoding.charset}</encoding>
+				</configuration>
+			</plugin>
+
+			<!--<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
+
+			<!-- 资源文件编码处理 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<encoding>${encoding.charset}</encoding>
+				</configuration>
+			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <uniqueVersion>false</uniqueVersion>
+                    <sources>true</sources>
+                </configuration>
+            </plugin>
+
+			<!-- 测试用例 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<!-- 是否执行测试用例 -->
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+
+
+		</plugins>
+
+		<!-- 子工程定义后才生效 -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+	<dependencyManagement>
+		<dependencies>
+			<!-- spring bom 
+				ensure that all spring dependencies (both direct and transitive) are at the same version
+			-->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- 日志相关jar包 -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-lang3</artifactId>
+			    <version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-codec</groupId>
+			    <artifactId>commons-codec</artifactId>
+			    <version>${commons-codec.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-collections</groupId>
+			    <artifactId>commons-collections</artifactId>
+			    <version>${commons-collections.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-beanutils</groupId>
+			    <artifactId>commons-beanutils</artifactId>
+			    <version>${commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>javax.servlet</groupId>
+			    <artifactId>javax.servlet-api</artifactId>
+			    <version>${servlet.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-core</artifactId>
+			    <version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>junit</groupId>
+			    <artifactId>junit</artifactId>
+			    <version>${junit.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>net.sf.json-lib</groupId>
+			    <artifactId>json-lib</artifactId>
+			    <version>${jsonlib.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpclient</artifactId>
+			    <version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.httpcomponents</groupId>
+			    <artifactId>httpmime</artifactId>
+			    <version>${httpclient.version}</version>
+			</dependency>
+			
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>3rd-part</id>
+			<url>http://114.115.149.251:8081/repository/3rd-part/</url>
+		</repository>
+		<snapshotRepository>
+			<id>3rd-part</id>
+			<url>http://114.115.149.251:8081/repository/3rd-part/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
